@@ -16,7 +16,7 @@ public:
 
         bool ans = false;
         string temp = "";
-        for(int k = i; k<n; k++){
+        for(int k = i; k<min(n,i+20); k++){
             temp += A[k];
             if(isPresent(temp,s,A)){
                 ans |= f(k+1,A,s);
