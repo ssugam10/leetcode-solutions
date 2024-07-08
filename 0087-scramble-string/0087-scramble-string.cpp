@@ -29,6 +29,7 @@ public:
     bool isScramble(string s1, string s2) {
         if(s1.size() != s2.size()) return false;
         int n = s1.size();
+        mp.clear();
         return f(s1, s2, n);
     }
 };
