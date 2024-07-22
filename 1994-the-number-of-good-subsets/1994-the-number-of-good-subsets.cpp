@@ -14,6 +14,8 @@ public:
             return tot;
         }
         
+        //if(dp[curr][mask] != -1)    return dp[curr][mask] % mod;
+        
         ll ans = f(curr + 1, mask, elig, numsPrimeMask, v, freq);
         
         if((numsPrimeMask[elig[curr]] & mask) == 0){
@@ -22,6 +24,7 @@ public:
             v.pop_back();
         }
         
+        // return dp[curr][mask] = ans % mod;
         return ans;
     }
     
