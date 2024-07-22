@@ -1,33 +1,25 @@
 class Solution {
 public:
 
-void dfs(int n,vector<vector<int>>&adj,vector<bool>&vis){
-    vis[n]=true;
+void dfs(int n,vector<vector<int>>&adj,vector<int>&vis){
+    vis[n]=1;
     for(auto i:adj[n]){
-        if(!vis[i]){
-            vis[i]=true;
+        if(vis[i]==0){
+            vis[i]=1;
         dfs(i,adj,vis);
         }
     }
 }
 
-bool connected(vector<vector<int>>&adj,vector<bool>&vis,int n){
-    dfs(0,adj,vis);
-    
-    for(int i = 0; i<n; i++){
-        if(!vis[i]) return false;
+int connected(vector<vector<int>>&adj,vector<int>&vis,int n){
+    int c=0;
+    for(int i=0;i<n;i++){
+        if(vis[i]==0){
+        dfs(i,adj,vis);
+        c++;
     }
-    
-    return true;
-    
-    // int c=0;
-    // for(int i=0;i<n;i++){
-    //     if(vis[i]==0){
-    //     dfs(i,adj,vis);
-    //     c++;
-    // }
-    // }
-    // return c;
+    }
+    return c;
 
 }
 
@@ -52,7 +44,7 @@ vector<vector<int>>adj(n);
             auto it1=find(adj[b].begin(),adj[b].end(),a);
             adj[b].erase(it1);
 
-            vector<bool>vis(n,false);
+            vector<int>vis(n,0);
 
             // for(auto i:adj){
             //     for(auto j:i)
@@ -61,10 +53,10 @@ vector<vector<int>>adj(n);
             // }
             // cout<<endl;
         
-            bool ans=connected(adj,vis,n);
+            int ans=connected(adj,vis,n);
 
             // cout<<ans<<endl;
-            if(ans==true ){
+            if(ans==1 ){
                 v.push_back(a+1);
                 v.push_back(b+1);
                 return v;
