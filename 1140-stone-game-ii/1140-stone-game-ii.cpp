@@ -1,7 +1,7 @@
 class Solution {
 public:
     int n;
-    vector<vector<int>> dp; // DP table to memoize results
+    vector<vector<int>> dp; 
 
     int f(int i, int m, vector<int> &piles) {
         if (i == n) return 0; // If all piles are taken
@@ -9,14 +9,12 @@ public:
 
         int ans = INT_MIN;
         int tot = 0;
-        for (int x = 1; x <= 2 * m && i + x <= n; x++) {
-            if(i + x - 1 > n)   continue;
-            tot += piles[i + x - 1];
-            ans = max(ans, tot - f(i + x, max(m, x), piles));
+        for(int k = i ; k<min(i+2*m,n); k++){
+            tot += piles[k];
+            ans = max(ans, tot - f(k+1,max(m,k - i + 1),piles));
         }
 
-        dp[i][m] = ans;
-        return ans;
+        return dp[i][m] = ans;
     }
 
     int stoneGameII(vector<int>& piles) {
