@@ -1,1 +1,1 @@
-​
+Each state can be classified as winning or loosing state, this can be done by removing numbers from it which are squares of natural numbers, basic game theory prob
