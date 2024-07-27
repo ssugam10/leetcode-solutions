@@ -1,1 +1,1 @@
-​
+In this code my logic is to find the maximum possible difference a player can create by playing (since each player plays optimally) so they would obv want to keep the difference maximum, thats why I used max in the for loop in the recursion. Then depending on result a suitable answer is returned
