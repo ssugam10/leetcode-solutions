@@ -1,6 +1,5 @@
 class KthLargest {
 public:
-    priority_queue<int> mx_pq;  //max-heap
     priority_queue<int,vector<int>,greater<int>> mn_pq; //min-heap
     
     int k;
@@ -15,20 +14,14 @@ public:
     }
     
     void addEle(int ele){
-        int mx = mx_pq.size();
         int mn = mn_pq.size();
         if(mn < k){
             mn_pq.push(ele);
-            return;
         }
         else{
             if(ele > mn_pq.top()){
-                mx_pq.push(mn_pq.top());
                 mn_pq.pop();
                 mn_pq.push(ele);
-            }
-            else{
-                mx_pq.push(ele);
             }
         }
     }
