@@ -8,13 +8,13 @@ public:
         
         if(i >= dungeon.size() || j >= dungeon[0].size())   return INT_MAX;
         
-        if(i == dungeon.size() - 1 && j == dungeon[0].size() - 1)   return (dungeon[i][j] <= 0) ? -dungeon[i][j] : 0;
+        if(i == dungeon.size() - 1 && j == dungeon[0].size() - 1)   return (dungeon[i][j] <= 0) ? -dungeon[i][j] + 1 : 1;
         
         if(dp[i][j] != -1)  return dp[i][j];
         
         int ans = min(f(i+1,j,dungeon), f(i,j+1,dungeon)) - dungeon[i][j];
         
-        if(ans <= 0) ans = 0;
+        if(ans <= 0) ans = 1;
         
         return dp[i][j] = ans;
     }
@@ -23,6 +23,6 @@ public:
         int n = dungeon.size();
         int m = dungeon[0].size();
         dp.resize(n,vector<int>(m,-1));
-        return max(1,1 + f(0,0,dungeon));
+        return f(0,0,dungeon);
     }
 };
