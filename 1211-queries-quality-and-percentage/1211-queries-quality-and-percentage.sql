@@ -1,2 +1,2 @@
 # Write your MySQL query statement below
-select a.query_name, ROUND(AVG(a.rating / a.position),2) as quality, ROUND(((select count(*) from Queries b where b.query_name = a.query_name and b.rating < 3) * 100 / (select count(*) from Queries c where c.query_name = a.query_name)), 2) as poor_query_percentage from Queries a where query_name is not NULL group by query_name;
+SELECT query_name, ROUND(AVG(rating / position), 2) AS quality, ROUND(SUM(CASE WHEN rating < 3 THEN 1 ELSE 0 END) * 100 / COUNT(*), 2) AS poor_query_percentage FROM queries WHERE query_name is NOT NULL GROUP BY query_name;
