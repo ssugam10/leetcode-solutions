@@ -15,10 +15,10 @@ public:
             if(n % 2 == 0 || ((n & 1) && (i < mark - 1)))    v.push_back(nums[i + mark]);
         }
         
-        for(int i = 0; i<v.size(); i++){
-            cout<<v[i]<<" ";
-        }
-        cout<<endl;
+        // for(int i = 0; i<v.size(); i++){
+        //     cout<<v[i]<<" ";
+        // }
+        // cout<<endl;
         
         vector<int> final;
         
@@ -27,15 +27,15 @@ public:
                 vector<int> fhalf(v.begin(),v.begin() + i + 1);
                 vector<int> shalf(v.begin() + i + 1, v.end());
 
-                for(int i = 0; i<fhalf.size(); i++){
-                    cout<<fhalf[i]<<" ";
-                }
-                cout<<endl;
+//                 for(int i = 0; i<fhalf.size(); i++){
+//                     cout<<fhalf[i]<<" ";
+//                 }
+//                 cout<<endl;
 
-                for(int i = 0; i<shalf.size(); i++){
-                    cout<<shalf[i]<<" ";
-                }
-                cout<<endl;
+//                 for(int i = 0; i<shalf.size(); i++){
+//                     cout<<shalf[i]<<" ";
+//                 }
+//                 cout<<endl;
 
                 for(int i = 0; i<fhalf.size(); i++){
                     shalf.push_back(fhalf[i]);
