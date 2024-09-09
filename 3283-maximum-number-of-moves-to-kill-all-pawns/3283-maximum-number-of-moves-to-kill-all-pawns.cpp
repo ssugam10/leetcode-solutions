@@ -64,6 +64,9 @@ public:
     
     int dp[16][(1 << 16) + 1];
     
+    /* No need to consider flag in dp since the parity of number of ones set in the mask will be same for alice's all moves, 
+    which will be same for bob and opposite to the parity of alice's, so keeping flag as a part of dp is redundant */
+    
     int f(int curr, int mask, bool flag){
         // All pawns have been captured so no more moves!
         if(mask == (1 << n) - 1) return 0;
