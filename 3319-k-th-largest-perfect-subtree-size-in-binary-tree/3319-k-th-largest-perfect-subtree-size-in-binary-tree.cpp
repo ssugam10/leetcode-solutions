@@ -1,47 +1,35 @@
-/**
- * Definition for a binary tree node.
- * struct TreeNode {
- *     int val;
- *     TreeNode *left;
- *     TreeNode *right;
- *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
- *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
- *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
- * };
- */
 class Solution {
 public:
-    unordered_map<TreeNode *, int> nodes;
-    vector<int> sizes;
-    
-    int dfs(TreeNode *root){
-        if(!root)   return 0;
-        return nodes[root] = 1 + dfs(root->left) + dfs(root->right);
-    }
-    
-    int traverse(TreeNode *root){
-        if(!root)   return 0;
-        
-        int height = min(traverse(root->left), traverse(root->right)) + 1;
-        
-        if(nodes[root] == pow(2,height) - 1){
-            sizes.push_back(nodes[root]);
-            return height;
+    vector<int>ans;
+    pair<bool,int>make_tree(TreeNode* root){
+        if(root==NULL){
+            return {true,0};
         }
-        else{
-            return 0;
+
+        pair<bool,int>l=make_tree(root->left);
+        pair<bool,int>r=make_tree(root->right);
+
+        if(l.first && r.first && l.second==r.second ){
+            int s=l.second+r.second+1;
+            ans.push_back(s);
+            return {true,s};
         }
+
+        return {false,0};
     }
-    
     int kthLargestPerfectSubtree(TreeNode* root, int k) {
-        dfs(root);
-        
-        traverse(root);
-        
-        sort(sizes.rbegin(),sizes.rend());
-        
-        if(k > sizes.size())    return -1;
-        
-        return sizes[k - 1];
+
+        if(root==NULL){
+            return -1;
+        }
+        ans.clear();
+        make_tree(root);
+
+        sort(ans.begin(),ans.end(),greater<int>());
+
+        if(ans.size()>=k){
+            return ans[k-1];
+        }
+        return -1;
     }
 };
