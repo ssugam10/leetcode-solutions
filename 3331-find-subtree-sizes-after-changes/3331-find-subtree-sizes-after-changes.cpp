@@ -4,7 +4,7 @@ public:
     set<int> visited;
     vector<set<int>> newGraph;
     
-    void dfs(int node, int parent, vector<set<int>> &graph, string &s, map<char,int> &mp){
+    void dfs(int node, int parent, vector<set<int>> &graph, string &s, unordered_map<char,int> &mp){
         
         if(visited.find(node) != visited.end())    return;
         visited.insert(node);
@@ -48,7 +48,7 @@ public:
             graph[parent[i]].insert(i);
         }
         
-        map<char,int> mp;
+        unordered_map<char,int> mp;
         visited.clear();
         
         newGraph.clear();
