@@ -2,33 +2,32 @@ class Solution {
 public:
     int longestSquareStreak(vector<int>& nums) {
         int n = nums.size();
-        
-        sort(nums.begin(),nums.end());
-        
+
+        // Remove duplicates by using a set
+        set<int> unique_nums(nums.begin(), nums.end());
+        nums.assign(unique_nums.begin(), unique_nums.end());
+
+        sort(nums.begin(), nums.end());
+
         int mx = 1;
-        
-        vector<int> len(n,1);
-        map<int,int> mp;    //maps the number to its index
-        
+        map<int, int> mp;    // maps the number to its greatest square streak
         bool flag = false;
-        
-        for(int i = 0; i<n; i++){
+
+        for(int i = 0; i < nums.size(); i++) {
             int root = sqrt(nums[i]);
-            
-            if(root * root == nums[i] && mp.find(root) != mp.end()){
-                len[i] += len[mp[root]];
+
+            if(mp[nums[i]] == 0) mp[nums[i]] = 1;
+
+            if(root * root == nums[i] && mp[root] > 0) {
+                mp[nums[i]] += mp[root];
                 flag = true;
             }
-            
-            if(mp.find(nums[i]) == mp.end()){
-                mp[nums[i]] = i;
-            }
-            
-            mx = max(mx, len[i]);
+
+            mx = max(mx, mp[nums[i]]);
         }
-        
-        if(!flag)   return -1;
-        
+
+        if(!flag) return -1;
+
         return mx;
     }
 };
