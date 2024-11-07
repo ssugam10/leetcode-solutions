@@ -8,7 +8,7 @@ public:
         
         for(int i = 0; i<n; i++){
             for(int j = 0; j < 32; j++){
-                bits[j] += ((candidates[i] & (1 << j)) != 0);
+                bits[j] += (candidates[i] >> j) & 1;
             }
         }
         
