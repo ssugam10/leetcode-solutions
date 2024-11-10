@@ -1,9 +1,9 @@
 class Solution {
 public:
     int maxIncreasingSubarrays(vector<int>& nums) {
-        int n = nums.size();
+        //Even binary search on the value of k works here but i have applied greedy approach
         
-        map<int,int> mp;
+        int n = nums.size();
         
         int k = 0;
         
