@@ -9,17 +9,11 @@ public:
             if(child == parent)     continue;
             
             int childSum = check(child, node, target, graph, nums, comp);
-            if(childSum == -1)  return -1;
             
             sum += childSum;
         }
         
-        if(sum > target)    return -1;
-        
-        if(sum == target){
-            comp++;
-            return 0;
-        }
+        if(sum % target == 0)   comp++;
         
         return sum;
     }
